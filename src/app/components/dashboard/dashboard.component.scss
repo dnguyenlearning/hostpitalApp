@@ -1,0 +1,48 @@
+@import '~styles.scss';
+#dashboard{
+    @extend .fullHeightWidthNav;
+    padding: 30px 0;
+    margin:30px 0;
+    @include addBG('/assets/images/background.png');
+}
+
+.dashboard{
+    background-color: $block_color;
+    height: 500px;
+    @include addBorder(1px solid white);
+    border:1px solid white;
+    padding-left: 10px;
+    h1{
+        color: white;
+    }
+}
+
+
+.link{
+    margin-top: 10px;
+    a{
+        color: #333;
+        font-weight: bolder;
+    }
+}
+.upload{
+    background-color:  $block_color;
+    height:500px;
+    @include addBorder(1px solid white);
+    h1{
+        color: white;
+    }
+    .imageUpload{
+        width: 250px;
+        height: auto;
+        margin-bottom: 30px;
+        img{
+            max-width: 100%;
+        }
+    }
+    // mat-slide-toggle{
+    //     margin-top:10px;
+    //     color: white !important;
+    // }
+}
+

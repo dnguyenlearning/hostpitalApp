@@ -1,0 +1,23 @@
+<div id="login" fxLayout="row" fxLayoutAlign="center center" >
+  <div fxFlex="400px" class="imageLogin"></div>
+  <div fxFlex="400px" fxLayoutAlign="center center" class="login" fxLayout="column">
+      <h1>HostpitalApp Login</h1>
+      <form fxLayout="column" [formGroup]="form" (ngSubmit)="onSubmit(form)">
+        <mat-form-field color="accent">
+            <input matInput placeholder="Username" formControlName="username">
+            <mat-error *ngIf="username.errors && username.touched">
+                <mat-error *ngIf="username.errors.required">Username is Required.</mat-error>
+                <mat-error *ngIf="username.errors.CannotContainSpace">Username Cannot Contain Space.</mat-error>       
+            </mat-error>  
+        </mat-form-field >
+        <mat-form-field color="accent">
+            <input matInput placeholder="Password" formControlName="password" type="password">
+            <mat-error *ngIf="password.errors && password.touched">
+                <mat-error *ngIf="password.errors.required">Password is required.</mat-error>
+            </mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="primary" [disabled]="form.invalid" type="submit">Login</button>
+        <span class="link">have an account yet? <a routerLink="/register">Register</a></span>
+      </form>
+  </div>
+</div>

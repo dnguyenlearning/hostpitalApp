@@ -1,0 +1,27 @@
+@import '~styles.scss';
+#register{
+    @extend .fullHeightWidthNav;
+    padding: 30px 0;
+    @include addBG('/assets/images/background.png');
+}
+
+.register{
+    background-color: $block_color;
+    height: 500px;
+    @include addBorder(1px solid white);
+    h1{
+        color: white;
+    }
+}
+.imageLogin{
+    background: url('/assets/images/login.png') center center;
+    height: 500px;
+    @include addBorder(1px solid white);
+}
+.link{
+    margin-top: 10px;
+    a{
+        color: #333;
+        font-weight: bolder;
+    }
+}

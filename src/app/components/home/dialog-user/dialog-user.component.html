@@ -1,0 +1,16 @@
+<mat-card>
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{medicine.name}}</mat-card-title>
+      <mat-card-subtitle>{{medicine._id}}</mat-card-subtitle>
+      <mat-card-subtitle>ExpiredDate: {{medicine.expiredDate}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="{{medicine.imageUrl}}" alt="avatar">
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="editMedicine()" [routerLink]="['/edit', medicine._id]">Edit</button>
+      <button mat-raised-button color="accent" (click)="removeMedicine(medicine._id)">Remove</button>
+      <button mat-icon-button >
+        <mat-icon color="accent" (click)="closeDialog()">close</mat-icon>
+      </button>
+    </mat-card-actions>
+</mat-card>

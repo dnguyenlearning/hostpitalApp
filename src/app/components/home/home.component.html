@@ -1,0 +1,88 @@
+<div id="home" fxLayout="column" fxLayoutAlign="start center">
+  <div class="controls" fxLayout="row" fxLayoutAlign="space-between center">
+    <mat-form-field color="accent" floatPlaceholder="always">
+      <input matInput #filter placeholder="Filter Medicines">
+    </mat-form-field>
+    <div>
+      <button mat-raised-button color="primary" routerLink="/dashboard">Add Products</button>
+      <button mat-raised-button (click)="filterExpiredProduct('warning')" >
+        <mat-chip-list>
+            Warning Date Products &nbsp; <mat-chip color="accent" selected="true"> {{warningDateProducts}} </mat-chip>
+        </mat-chip-list>
+      </button>
+      <button mat-raised-button (click)="filterExpiredProduct('expired')" >
+        <mat-chip-list>
+            Expired Date Products &nbsp; <mat-chip color="warn" selected="true"> {{expiredDateProducts}} </mat-chip>
+        </mat-chip-list>
+      </button>
+      <button mat-raised-button color="accent" (click)="filterExpiredProduct('all')"> ALL</button>
+    </div>
+  </div>
+  <div class="data">
+      <mat-paginator #paginator
+      [length]="exampleDatabase.data.length"
+      [pageIndex]="0"
+      [pageSize]="10"
+      [pageSizeOptions]="[10, 25, 100]">
+      </mat-paginator>
+      <mat-table #table [dataSource]="dataSource" matSort>
+        <ng-container matColumnDef="_id" >
+          <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row._id}} </mat-cell>
+        </ng-container>
+        
+        <ng-container matColumnDef="imageUrl" >
+          <mat-header-cell *matHeaderCellDef mat-sort-header> ImageUrl </mat-header-cell>
+          <mat-cell *matCellDef="let row"> 
+            <img [src]="row.imageUrl" alt="image">
+          </mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+        </ng-container>
+      
+      
+        <!-- exportedDate Column -->
+        <ng-container matColumnDef="exportedDate" >
+          <mat-header-cell *matHeaderCellDef mat-sort-header > ExportedDate </mat-header-cell>
+          <mat-cell *matCellDef="let row"> {{formatDate(row.exportedDate)}} </mat-cell>
+        </ng-container>
+      
+        <!-- importedDate Column -->
+        <ng-container matColumnDef="importedDate">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> ImportedDate </mat-header-cell>
+          <mat-cell *matCellDef="let row" > {{formatDate(row.importedDate)}}  </mat-cell>
+        </ng-container>
+        <!-- expiredDate Column -->
+        <ng-container matColumnDef="expiredDate" >
+          <mat-header-cell  *matHeaderCellDef mat-sort-header> ExpiredDate </mat-header-cell>
+          <mat-cell *matCellDef="let row" > {{formatDate(row.expiredDate)}} </mat-cell>
+        </ng-container>
+        <!-- Country Column -->
+        <ng-container matColumnDef="country">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Country </mat-header-cell>
+          <mat-cell *matCellDef="let row" > {{row.country}} </mat-cell>
+        </ng-container>
+
+        <!-- Quantity Column -->
+        <ng-container matColumnDef="quantity">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Quantity </mat-header-cell>
+          <mat-cell *matCellDef="let row" > {{row.quantity}} </mat-cell>
+        </ng-container>
+
+        <!-- storedPlace Column -->
+        <ng-container matColumnDef="storedPlace">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> storedPlace </mat-header-cell>
+          <mat-cell *matCellDef="let row" > {{row.storedPlace}} </mat-cell>
+        </ng-container>
+
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row [class.warningDate]="warningDate(row)" [class.expiredDate]="expiredDate(row)"  *matRowDef="let row; columns: displayedColumns;" (click)="getDataEachRow(row)" ></mat-row>
+      </mat-table>
+      
+  </div>
+</div>

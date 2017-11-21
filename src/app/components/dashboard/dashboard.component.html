@@ -1,0 +1,80 @@
+<div id="dashboard" fxLayout="row" fxLayoutAlign="center center" >
+  <div fxFlex="400px" class="upload" fxLayout="column" fxLayoutAlign="center center">
+    <div *ngIf="!imageLink">
+        <h1>Put Image Link</h1>
+    </div>
+    <div *ngIf="imageLink" class="imageUpload">
+        <img [src]="imageLink" appImageUrl (error)="errorHandler($event)" default="assets/images/not-valid.png">
+    </div>
+
+    
+
+    <div class="buttons" fxLayout="column">
+        <!-- <mat-slide-toggle #slideToggle="matSlideToggle"
+            class="example-margin"
+            color="accent">
+            Using Link/ local Image
+        </mat-slide-toggle> -->
+        <mat-form-field color="accent">
+            <input matInput #link  placeholder="Medicine Link" (keyup)="linkChange(link)"> 
+        </mat-form-field>
+        <!-- <input type="file" placeholder="File" *ngIf="!slideToggle.checked"> -->
+    </div>
+  </div>
+  <div fxFlex="400px" fxLayoutAlign="center center" class="dashboard" fxLayout="column">
+      <h1>HostpitalApp Add Products</h1>
+      <form fxLayout="row" fxLayoutWrap fxLayoutGap="10px"  [formGroup]="addMedicineForm" (ngSubmit)="onAddMedicine(addMedicineForm)">
+        <mat-form-field color="accent">
+            <input matInput placeholder="Name" formControlName="name">
+            <mat-error *ngIf="name.errors && name.touched">
+                <mat-error *ngIf="name.errors.required">Medicine Name is Required.</mat-error>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field color="accent">
+            <input matInput placeholder="Country" formControlName="country">
+            <mat-error *ngIf="country.errors && country.touched">
+                <mat-error *ngIf="country.errors.required">Country is Required.</mat-error>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field color="accent">
+            <input matInput [matDatepicker]="ExportedDatePicker" placeholder="Exported Date" formControlName="exportedDate">
+           
+            <mat-datepicker-toggle matSuffix [for]="ExportedDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker (selectedChanged)="DatePickerChange(ExportedDatePicker)" #ExportedDatePicker="matDatepicker"></mat-datepicker>
+            <mat-error *ngIf="exportedDate.errors && exportedDate.touched">
+                <mat-error *ngIf="exportedDate.errors.required">ExportedDate is Required.</mat-error>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field color="accent">
+            <input matInput [matDatepicker]="ImportedDatePicker" placeholder="Imported Date" formControlName="importedDate">
+            <mat-datepicker-toggle matSuffix [for]="ImportedDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker (selectedChanged)="DatePickerChange(ImportedDatePicker)" #ImportedDatePicker="matDatepicker"></mat-datepicker>
+            <mat-error *ngIf="importedDate.errors && importedDate.touched">
+                <mat-error *ngIf="importedDate.errors.required">ImportedDate is Required.</mat-error>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field color="accent">
+            <input matInput [matDatepicker]="ExpiredDatePicker" placeholder="Expired Date" formControlName="expiredDate">
+            <mat-datepicker-toggle matSuffix [for]="ExpiredDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker (selectedChanged)="DatePickerChange(ExpiredDatePicker)" #ExpiredDatePicker="matDatepicker"></mat-datepicker>
+            <mat-error *ngIf="expiredDate.errors && expiredDate.touched">
+                <mat-error *ngIf="expiredDate.errors.required">ExpiredDate is Required.</mat-error>
+            </mat-error>
+        </mat-form-field>
+        
+        <mat-form-field color="accent">
+            <input matInput placeholder="Quantity" formControlName="quantity">
+            <mat-error *ngIf="quantity.errors && quantity.touched">
+                <mat-error *ngIf="quantity.errors.required">Quantity is Required.</mat-error>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field color="accent">
+            <input matInput placeholder="Stored Place" formControlName="storedPlace">
+            <mat-error *ngIf="storedPlace.errors && storedPlace.touched">
+                <mat-error *ngIf="storedPlace.errors.required">StoredPlace is Required.</mat-error>
+            </mat-error>
+        </mat-form-field>
+        <p><button mat-raised-button color="accent" type="submit" [disabled]="addMedicineForm.invalid || !imageLink || imageLink=='invalid'">Add</button></p>
+      </form>
+  </div>
+</div>

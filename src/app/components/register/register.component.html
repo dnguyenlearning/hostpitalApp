@@ -1,0 +1,38 @@
+<div id="register" fxLayout="row" fxLayoutAlign="center center" >
+    <div fxFlex="400px" class="imageLogin"></div>
+    <div fxFlex="400px" fxLayoutAlign="center center" class="register" fxLayout="column">
+        <h1>HostpitalApp Register</h1>
+        <form fxLayout="column" [formGroup]="registerForm" (ngSubmit)="onRegister(registerForm)">
+          <mat-form-field color="accent">
+            <input matInput placeholder="Name" formControlName="name" >
+            <mat-error *ngIf="name.errors && name.touched">
+                <mat-error *ngIf="name.errors.required">Name is Required.</mat-error>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field color="accent">
+            <input matInput placeholder="Email" formControlName="email">
+            <mat-error *ngIf="email.errors && email.touched">
+                <mat-error *ngIf="email.errors.required">Email is Required.</mat-error>
+                <mat-error *ngIf="email.errors.CannotContainSpace">Email cannot contain space.</mat-error>
+                <mat-error *ngIf="email.errors.emailTaken">Email existed.</mat-error>
+                <mat-error *ngIf="email.errors.incorrectMailFormat">Incorrect Email Format.</mat-error>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field color="accent">
+            <input matInput placeholder="Username" formControlName="username">
+            <mat-error *ngIf="username.errors && username.touched">
+                <mat-error *ngIf="username.errors.required">Username is Required.</mat-error>
+                <mat-error *ngIf="username.errors.CannotContainSpace">Username cannot contain space.</mat-error>
+                <mat-error *ngIf="username.errors.usernameTaken">Username existed.</mat-error>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field color="accent">
+            <input matInput type="password" placeholder="Password" formControlName="password">
+            <mat-error *ngIf="password.errors && password.touched">
+                <mat-error *ngIf="password.errors.required">Password is Required.</mat-error>
+            </mat-error>
+          </mat-form-field>
+          <button mat-raised-button color="primary" [disabled]="registerForm.invalid || enableR" type="submit">Register</button>
+        </form>
+    </div>
+  </div>

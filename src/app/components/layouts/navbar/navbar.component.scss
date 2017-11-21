@@ -1,0 +1,16 @@
+@import '~styles.scss';
+
+.example-spacer{
+    flex:  1 1 auto; 
+}
+.title{
+    color: $app_name_color;
+    font-size: 40px;
+}
+.menu{
+    cursor: pointer;
+}
+.navbar{
+    background-color: $navbar_bg_color;
+}
+

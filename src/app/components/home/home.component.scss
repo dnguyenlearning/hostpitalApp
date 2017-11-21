@@ -1,0 +1,42 @@
+@import '~styles.scss';
+#home{
+    height: auto;
+    padding: 50px;
+    background: $block_color;
+    .controls,.data,.paginate{
+        width:100%;
+    }
+    input{
+        color: black !important;
+    }
+    mat-row{
+        cursor: pointer;
+    }
+    mat-cell{
+        padding:15px;
+        img{
+            max-width: 100%;
+            margin: 10px;
+        }
+    }
+    mat-paginator{
+        color: white !important
+    }
+
+    .mat-select-value{
+        color: white;
+    }
+    .mat-select-arrow{
+        color: white;
+    }
+
+    .expiredDate{
+        background-color: red;
+    }
+    .warningDate{
+        background-color: orange;
+    }
+    
+}
+
+
